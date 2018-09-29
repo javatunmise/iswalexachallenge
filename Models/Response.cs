@@ -14,9 +14,6 @@ namespace Alexa.Models{
         public string text {get;set;}
         public string ssml {get;set;}
     }
-    public class Attributes{
-        public Dictionary<string,string> attributes {get;set;}
-    }
     public class Card{
         public string type {get;set;}
         public string title {get;set;}

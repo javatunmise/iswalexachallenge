@@ -33,6 +33,7 @@ namespace alexa_challenge.Logic
                                     {
                                         AccountName = reader["Account_Name"]?.ToString(),
                                         PhoneNumber = reader["Phone_number"]?.ToString(),
+                                        AccountNumber = reader["Account_Number"]?.ToString(),
                                         AccountBalance = (decimal)reader["Id"]
                                     });
                                 }

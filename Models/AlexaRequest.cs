@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Alexa.Models{
     public class AlexaRequest{
         public string version{get;set;}
@@ -10,7 +12,7 @@ namespace Alexa.Models{
         public bool isNew {get;set;}
         public string sessionId{get;set;}
         public Application application{get;set;}
-        public Attributes attributes{get;set;}
+        public Dictionary<string,object> attributes {get;set;}
         public User user {get;set;}
     }
     public class System {

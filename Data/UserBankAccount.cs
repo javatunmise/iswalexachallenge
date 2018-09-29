@@ -10,5 +10,6 @@ namespace alexa_challenge.Data
         public string PhoneNumber { get; set; }
         public string AccountName { get; set; }
         public decimal AccountBalance { get; set; }
+        public string AccountNumber { get; set; }
     }
 }

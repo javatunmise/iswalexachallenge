@@ -13,8 +13,12 @@ namespace alexa_challenge.Logic
         public AlexaResponse GetBalance(AlexaRequest alexaReq)
         {
             AlexaResponse alexaResp = new AlexaResponse();
-            OutputSpeech outSpeech = new OutputSpeech();
-            Dictionary<string, object> sessionAttr = new Dictionary<string, object>();
+            OutputSpeech speech = OutputMsgMaps.speechMap[Converters.BALANCE_ENQUIRY_SPEECH];
+            Dictionary<string, object> sessionAttr = alexaReq?.session?.attributes;
+            if (sessionAttr == null)
+            {
+                sessionAttr= new Dictionary<string, object>();
+            }
             try
             {
                 string deviceId = alexaReq?.session?.user.userId;
@@ -40,6 +44,29 @@ namespace alexa_challenge.Logic
                 else if (accounts.Count == 1)
                 {
 
+                    speech.text = $"<speak><s><emphasis level=\"moderate\">yay!</emphasis></s> <say-as interpret-as=\"cardinal\"> {accounts[0].AccountBalance} </ say -as> naira is left in your account</ speak > ";
+
+                    if (sessionAttr.ContainsKey(SessionAttributes.BALANCE)) {
+                        sessionAttr[SessionAttributes.BALANCE] = accounts[0].AccountBalance;
+                    }
+                    else { sessionAttr.Add(SessionAttributes.BALANCE, accounts[0].AccountBalance); }
+
+                    if (sessionAttr.ContainsKey(SessionAttributes.ACCOUNT_NUMBER))
+                    {
+                        sessionAttr[SessionAttributes.PHONE_NUMBER] = accounts[0].PhoneNumber;
+                    }
+                    else
+                    {
+                        sessionAttr.Add(SessionAttributes.PHONE_NUMBER, accounts[0].PhoneNumber);
+                    }
+                    if (sessionAttr.ContainsKey(SessionAttributes.ACCOUNT_NUMBER))
+                    {
+                        sessionAttr[SessionAttributes.ACCOUNT_NUMBER]= accounts[0].AccountNumber;
+                    }
+                    else {
+                        sessionAttr.Add(SessionAttributes.ACCOUNT_NUMBER, accounts[0].AccountNumber);
+                    }
+                    
                 }
                 else
                 {

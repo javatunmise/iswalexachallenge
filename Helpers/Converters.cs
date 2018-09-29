@@ -21,5 +21,8 @@ namespace alexa_challenge.Helpers
             {9,"Nine" },
             {10,"Ten" },
         };
+
+        public const string BALANCE_ENQUIRY_SPEECH = "BalanceEnquiry";
     }
+
 }
