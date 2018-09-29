@@ -4,7 +4,10 @@ using alexa_challenge.Helpers;
 namespace Alexa.Logic{
     public class ProcessAlexaRequests{
         public AlexaResponse processLaunchRequest(AlexaRequest request){
-            return new AlexaResponse();
+            AlexaResponse response = new AlexaResponse();
+            response.response = new Response() { outputSpeech = new OutputSpeech() { text = "<speak><s> Hello!</s> what can i do for you today?</speak>", type = "SSML" }, };
+            response.response.shouldEndSession = true;
+            return response;
         }
         public AlexaResponse processIntentRequest(AlexaRequest request){
             string intentName = request?.request?.intent?.name;
