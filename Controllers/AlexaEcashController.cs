@@ -7,6 +7,7 @@ using Alexa.Models;
 using Newtonsoft;
 using Alexa.Logic;
 using alexa_challenge.Helpers;
+using Newtonsoft.Json.Linq;
 
 namespace alexa_challenge.Controllers
 {
@@ -16,9 +17,10 @@ namespace alexa_challenge.Controllers
 public class AlexaEcashController : Controller
 {
     private ProcessAlexaRequests processor = new ProcessAlexaRequests();
-    public IActionResult PostAlexaRequest(string alexaReq){
+    public IActionResult PostAlexaRequest([FromBody] JToken req){
         AlexaResponse response=new AlexaResponse();
         try{
+                string alexaReq = req.ToString();
             AlexaRequest alexaRequest=Newtonsoft.Json.JsonConvert.DeserializeObject<AlexaRequest>(alexaReq);
                 if (alexaRequest.request.type == null)
                 {
@@ -32,6 +34,11 @@ public class AlexaEcashController : Controller
                 else if(string.Compare(alexaRequest.request.type,IntentTypes.SESSION_ENDED_REQUEST, true) == 0)
                 {
                     response = processor.processSessionEndRequest(alexaRequest);
+                }
+
+                else if(string.Compare(alexaRequest.request.type, IntentTypes.SESSION_ENDED_REQUEST, true) == 0)
+                {
+                    response = processor.processLaunchRequest(alexaRequest);
                 }
                 return Ok(response);
         }
