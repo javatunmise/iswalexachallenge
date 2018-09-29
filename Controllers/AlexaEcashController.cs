@@ -36,7 +36,7 @@ public class AlexaEcashController : Controller
                     response = processor.processSessionEndRequest(alexaRequest);
                 }
 
-                else if(string.Compare(alexaRequest.request.type, IntentTypes.SESSION_ENDED_REQUEST, true) == 0)
+                else if(string.Compare(alexaRequest.request.type, IntentTypes.LAUNCH_REQUEST, true) == 0)
                 {
                     response = processor.processLaunchRequest(alexaRequest);
                 }
