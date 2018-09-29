@@ -19,4 +19,10 @@ namespace alexa_challenge.Helpers
         public const string PLAIN_TEXT = "Plaintext";
         public const string SSML = "SSML";
     }
+    public static class IntentNames
+    {
+        public const string PAYCODE_INTENT = "PaycodeIntent";
+        public const string BALANCE_ENQUIRY = "BalanceEnquiry";
+        public const string TRANSFER_INTENT = "TransferIntent";
+    }
 }
