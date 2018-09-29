@@ -5,8 +5,10 @@ namespace Alexa.Logic{
     public class ProcessAlexaRequests{
         public AlexaResponse processLaunchRequest(AlexaRequest request){
             AlexaResponse response = new AlexaResponse();
+            response.Version = "1.0";
             response.response = new Response() { outputSpeech = new OutputSpeech() { text = "<speak><s> Hello!</s> what can i do for you today?</speak>", type = "SSML" }, };
-            response.response.shouldEndSession = true;
+            response.response.reprompt = new Reprompt() { outputSpeech = new OutputSpeech() { text = "Here are the services I can provide for you: E-cash balance enquiry, Transfer on E-Cash and PayCode generation. Enter an appropriate command to proceed", type="PlainText" } };
+            response.response.shouldEndSession = false;
             return response;
         }
         public AlexaResponse processIntentRequest(AlexaRequest request){
